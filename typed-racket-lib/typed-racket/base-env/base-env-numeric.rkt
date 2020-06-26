@@ -1195,78 +1195,78 @@
     (varop-1+ N))]
 
 [max
- (from-cases (map varop (list -Zero -One))
+ (from-cases (map varop-1+ (list -Zero -One))
              (commutative-case -One -Zero)
              (commutative-case -PosByte -Byte)
              (commutative-case -PosIndex -Index)
              (commutative-case -PosFixnum -Fixnum)
              (commutative-case -NonNegFixnum -Fixnum)
-             (map varop (list -Index -NegFixnum -NonPosFixnum -PosFixnum -NonNegFixnum -Fixnum))
+             (map varop-1+ (list -Index -NegFixnum -NonPosFixnum -PosFixnum -NonNegFixnum -Fixnum))
              (commutative-case -PosInt -Int)
              (commutative-case -Nat -Int)
-             (map varop (list -NegInt -NonPosInt -PosInt -Nat -Int))
+             (map varop-1+ (list -NegInt -NonPosInt -PosInt -Nat -Int))
              ;; we could have more cases here. for instance, when mixing PosInt
              ;; and NegRats, we get a result of type PosInt (not just PosRat)
              ;; there's a lot of these, but they may not be worth including
              (commutative-case -PosRat -Rat)
              (commutative-case -NonNegRat -Rat)
-             (map varop (list -NegRat -NonPosRat -PosRat -NonNegRat -Rat
+             (map varop-1+ (list -NegRat -NonPosRat -PosRat -NonNegRat -Rat
                                  -FlonumPosZero -FlonumNegZero -FlonumZero))
              ;; inexactness is contagious: (max 3 2.3) => 3.0
              ;; we could add cases to encode that
              (commutative-case -PosFlonum -Flonum)
              (commutative-case -NonNegFlonum -Flonum)
-             (map varop (list -NegFlonum -NonPosFlonum -PosFlonum -NonNegFlonum -Flonum
-                              -SingleFlonumPosZero -SingleFlonumNegZero -SingleFlonumZero))
-             (varop -PosSingleFlonum)
+             (map varop-1+ (list -NegFlonum -NonPosFlonum -PosFlonum -NonNegFlonum -Flonum
+                                 -SingleFlonumPosZero -SingleFlonumNegZero -SingleFlonumZero))
+             (varop-1+ -PosSingleFlonum)
              (commutative-case -PosSingleFlonum -SingleFlonum)
-             (varop -NonNegSingleFlonum)
+             (varop-1+ -NonNegSingleFlonum)
              (commutative-case -NonNegSingleFlonum -SingleFlonum)
-             (map varop (list -NegSingleFlonum -NonPosSingleFlonum -SingleFlonum
-                              -InexactRealPosZero -InexactRealNegZero -InexactRealZero))
+             (map varop-1+ (list -NegSingleFlonum -NonPosSingleFlonum -SingleFlonum
+                                 -InexactRealPosZero -InexactRealNegZero -InexactRealZero))
              (commutative-case -PosInexactReal -InexactReal)
              (commutative-case -NonNegInexactReal -InexactReal)
-             (map varop (list -NegInexactReal -NonPosInexactReal -PosInexactReal -NonNegInexactReal
-                              -InexactReal -RealZero))
+             (map varop-1+ (list -NegInexactReal -NonPosInexactReal -PosInexactReal -NonNegInexactReal
+                                 -InexactReal -RealZero))
              (commutative-case -PosReal -Real)
              (commutative-case -NonNegReal -Real)
-             (map varop (list -NegReal -NonPosReal -PosReal -NonNegReal -Real)))]
+             (map varop-1+ (list -NegReal -NonPosReal -PosReal -NonNegReal -Real)))]
 [min
- (from-cases (map varop (list -Zero -One))
+ (from-cases (map varop-1+ (list -Zero -One))
              (commutative-case -Zero -One)
-             (map varop (list -PosByte -Byte -PosIndex -Index -PosFixnum -NonNegFixnum))
+             (map varop-1+ (list -PosByte -Byte -PosIndex -Index -PosFixnum -NonNegFixnum))
              (commutative-case -NegFixnum -Fixnum)
              (commutative-case -NonPosFixnum -Fixnum)
              (commutative-case -PosByte -PosInt)
              (commutative-case -Byte -Nat)
              (commutative-case -PosFixnum -PosInt)
              (commutative-case -NonNegFixnum -Nat)
-             (map varop (list -NegFixnum -NonPosFixnum -Fixnum -PosInt -Nat))
+             (map varop-1+ (list -NegFixnum -NonPosFixnum -Fixnum -PosInt -Nat))
              (commutative-case -NegInt -Int)
              (commutative-case -NonPosInt -Int)
-             (map varop (list -NegInt -NonPosInt -Int -PosRat -NonNegRat))
+             (map varop-1+ (list -NegInt -NonPosInt -Int -PosRat -NonNegRat))
              (commutative-case -NegRat -Rat)
              (commutative-case -NonPosRat -Rat)
-             (map varop (list -NegRat -NonPosRat -Rat
+             (map varop-1+ (list -NegRat -NonPosRat -Rat
                               -FlonumPosZero -FlonumNegZero -FlonumZero
                               -PosFlonum -NonNegFlonum))
              (commutative-case -NegFlonum -Flonum)
              (commutative-case -NonPosFlonum -Flonum)
-             (map varop (list -NegFlonum -NonPosFlonum -Flonum
-                              -SingleFlonumPosZero -SingleFlonumNegZero -SingleFlonumZero
-                              -PosSingleFlonum -NonNegSingleFlonum))
+             (map varop-1+ (list -NegFlonum -NonPosFlonum -Flonum
+                                 -SingleFlonumPosZero -SingleFlonumNegZero -SingleFlonumZero
+                                 -PosSingleFlonum -NonNegSingleFlonum))
              (commutative-case -NegSingleFlonum -SingleFlonum)
              (commutative-case -NonPosSingleFlonum -SingleFlonum)
-             (map varop (list -NegSingleFlonum -NonPosSingleFlonum -SingleFlonum
-                              -InexactRealPosZero -InexactRealNegZero -InexactRealZero
-                              -PosInexactReal -NonNegInexactReal))
+             (map varop-1+ (list -NegSingleFlonum -NonPosSingleFlonum -SingleFlonum
+                                 -InexactRealPosZero -InexactRealNegZero -InexactRealZero
+                                 -PosInexactReal -NonNegInexactReal))
              (commutative-case -NegInexactReal -InexactReal)
              (commutative-case -NonPosInexactReal -InexactReal)
-             (map varop (list -NegInexactReal -NonPosInexactReal -InexactReal
-                              -RealZero -PosReal -NonNegReal))
+             (map varop-1+ (list -NegInexactReal -NonPosInexactReal -InexactReal
+                                 -RealZero -PosReal -NonNegReal))
              (commutative-case -NegReal -Real)
              (commutative-case -NonPosReal -Real)
-             (map varop (list -NegReal -NonPosReal -Real)))]
+             (map varop-1+ (list -NegReal -NonPosReal -Real)))]
 
 [add1 (from-cases
        (-> -Zero -One)
