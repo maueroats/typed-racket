@@ -659,7 +659,10 @@
                                             (-arg-path 1))
                               (->... (list (->... (list a) (b b) c) (-lst a)) ((-lst b) b) (Un c (-val #t)))))]
 
-[reverse (-poly (a) (-> (-lst a) (-lst a)))]
+[reverse (-poly (a)
+                (cl->*
+                 (-> (-pair a (-lst a)) (-pair a (-lst a)))
+                 (-> (-lst a) (-lst a))))]
 [kernel:reverse (-poly (a) (-> (-lst a) (-lst a)))]
 [append (-poly (a)
                (cl->*
@@ -693,6 +696,10 @@
 [map (-polydots (c a b)
                 (cl->*
                  (-> (-> a c) (-pair a (-lst a)) (-pair c (-lst c)))
+                 ((list
+                   ((list a) (b b) . ->... . c)
+                   (-pair a (-lst a)))
+                  ((-pair b (-lst b)) b) . ->... .(-pair c (-lst c)))
                  ((list
                    ((list a) (b b) . ->... . c)
                    (-lst a))
