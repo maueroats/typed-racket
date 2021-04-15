@@ -249,11 +249,13 @@ Patterns involving an ellipsis @racket[...] for repetition may generate a
 The (deliberately obscure) code below does not type check without the type 
 annotation on the match pattern variable @racket[c].
 
-@examples[#:label #f #:eval the-eval
-  (: skip-a-num : (Listof Integer) -> (Listof Integer))
-  (define (skip-a-num lst)
+@codeblock[#:keep-lang-line? #f]{
+  #lang typed/racket
+  (: do-nothing (-> (Listof Integer) (Listof Integer)))
+  (define (do-nothing lst)
     (match lst
-      [`(,(? number?) ,#{c : (Listof Integer)} ...)   c]))
+      [(list (? number? #{c : (Listof Integer)}) ...)   c]))
+}
   
 @section{@racket[is-a?] and Occurrence Typing}
 
